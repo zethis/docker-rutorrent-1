@@ -162,6 +162,10 @@ RUN echo "@314 http://dl-cdn.alpinelinux.org/alpine/v3.14/main" >> /etc/apk/repo
 RUN echo "@320 http://dl-cdn.alpinelinux.org/alpine/v3.20/main" >> /etc/apk/repositories \
   && apk --update --no-cache add s6@320
 
+RUN echo "@nginx https://packages.nginx.org/mainline/alpine/v3.21/main" >> /etc/apk/repositories \
+  && wget -qO /etc/apk/keys/nginx_signing.rsa.pub https://nginx.org/keys/nginx_signing.rsa.pub \
+  && apk --update --no-cache add nginx@nginx
+
 RUN apk --update --no-cache add \
     7zip \
     bash \
@@ -175,7 +179,6 @@ RUN apk --update --no-cache add \
     libzen-dev \
     mediainfo \
     ncurses \
-    nginx \
     openssl \
     php83 \
     php83-bcmath \
